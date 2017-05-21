@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>
+            JavaScript color guessing game part2
+        </title>
+    </head>
+    <body onload="do_game()">
+        <script>
+            var target ;
+            var finsihed =false;
+            var colors = ["blue","cyan","gold","gray","green","magenta","orange","red","white","yellow"];
+            var input_color;
+            var guesses=0;
+            function do_game(){
+                var position = Math.random() * 10 ;
+                position= Math.floor(position);
+                target = colors[position];
+                alert("Target color is " + target);
+                while(!finsihed){
+                    input_color = prompt("I am thinking of one of these colors: \n\n" +
+                    "blue, cyan, gold, gray, green, magenta, orange, red,\nwhite, yellow \n\n" +
+                    "What color am I thinking of?");
+                    guesses += 1;
+                    finsihed = check_guess();
+                   
+                }
+            }
+                function check_guess(){
+                    if(colors.indexOf(input_color) < 0 ){
+                        alert("Sorry, I don't recognize your color. \n\n" +
+                        "Please try again.");
+                        return finsihed = false;
+                    }
+                    if(input_color > target){
+                        alert("Sorry, your guess is not correct! \n\n" +
+                        "Hint: your color is alphabetically higher than mine. \n\n" +
+                        "Please try again.");
+                        return finsihed = false;
+                    }
+
+                     if(input_color < target){
+                        alert("Sorry, your guess is not correct! \n\n" +
+                        "Hint: your color is alphabetically lower than mine. \n\n" +
+                        "Please try again.");
+                        return finsihed = false;
+                    }
+
+                   
+                        alert("Congratualtions! You have guessed the color! \n\n" + 
+                        "it took you " +guesses+ " guesses to finish the game! \n\n" + 
+                        "You can see the color in the background.");
+                        
+                        myBody=document.getElementsByTagName("body")[0];
+                        myBody.style.background=target;
+
+                        return finished = true;
+
+                }
+
+            
+            </script>
+
+
+    </body>
+</html>
